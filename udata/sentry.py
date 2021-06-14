@@ -39,7 +39,7 @@ def public_dsn(dsn):
     return public
 
 
-def init_app(app):
+def init_app(app, transport):
     if app.config['SENTRY_DSN']:
         try:
             import sentry_sdk
@@ -59,7 +59,8 @@ def init_app(app):
         sentry_sdk.init(
             dsn=sentry_public_dsn,
             integrations=[FlaskIntegration(), CeleryIntegration()],
-            ignore_errors=list(exceptions)
+            ignore_errors=list(exceptions),
+            transport=transport
         )
 
         # Set log level
