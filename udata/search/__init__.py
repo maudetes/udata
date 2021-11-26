@@ -14,6 +14,7 @@ from werkzeug.local import LocalProxy
 
 from udata.models import db
 from udata.tasks import task, as_task_param
+from udata.kafka import producer
 
 
 from . import analysis
@@ -170,7 +171,7 @@ def unindex(classname, id=None):
 def reindex_model_on_save(sender, document, **kwargs):
     '''(Re/Un)Index Mongo document on post_save'''
     if current_app.config.get('AUTO_INDEX'):
-        reindex.delay(*as_task_param(document))
+        producer.produce(sender, document, **kwargs)
 
 
 def unindex_model_on_delete(sender, document, **kwargs):
