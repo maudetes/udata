@@ -15,6 +15,7 @@ def format_dataset_message(dataset):
     return {
         'id': str(dataset.id),
         'title': dataset.title,
+        'acronym': dataset.acronym,
         'description': dataset.description,
         'url': dataset.display_url,
         'orga_sp': 1 if dataset.organization and dataset.organization.public_service else 0,
@@ -22,12 +23,13 @@ def format_dataset_message(dataset):
         'dataset_views': dataset.metrics.get("views", 0),
         'dataset_followers': dataset.metrics.get("followers", 0),
         'dataset_reuses': dataset.metrics.get("reuses", 0),
+        'resources_count': len(dataset.resources),
         'dataset_featured': 1 if dataset.featured else 0,
         'organization_id': str(dataset.organization.id) if dataset.organization else str(dataset.owner.id),
-        'temporal_coverage_start': 0,
-        'temporal_coverage_end': 0,
-        'spatial_granularity': 0,
-        'spatial_zones': 0
+        'temporal_coverage_start': str(dataset.temporal_coverage.start) if dataset.temporal_coverage else None,
+        'temporal_coverage_end': str(dataset.temporal_coverage.end) if dataset.temporal_coverage else None,
+        'spatial_granularity': dataset.spatial.granularity if dataset.spatial else None,
+        'spatial_zones': ','.join(z.name for z in dataset.spatial.zones) if dataset.spatial else None
     }
 
 
