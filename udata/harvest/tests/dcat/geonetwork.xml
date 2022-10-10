@@ -10,8 +10,8 @@
       <dct:modified xmlns:dct="http://purl.org/dc/terms/">2021-07-28</dct:modified>
    </dcat:CatalogRecord>
    <dcat:Dataset xmlns:dcat="http://www.w3.org/ns/dcat#"
-                 rdf:about="https://sig.oreme.org/geonetwork/srv/resources/datasets/0c456d2d-9548-4a2a-94ef-231d9d890ce2 https://sig.oreme.org/geonetwork/srv/resources0c456d2d-9548-4a2a-94ef-231d9d890ce2">
-      <dct:identifier xmlns:dct="http://purl.org/dc/terms/">0c456d2d-9548-4a2a-94ef-231d9d890ce2 https://sig.oreme.org/geonetwork/srv/resources0c456d2d-9548-4a2a-94ef-231d9d890ce2</dct:identifier>
+                 rdf:about="https://sig.oreme.org/geonetwork/srv/resources/datasets/0c456d2d-9548-4a2a-94ef-231d9d890ce2">
+      <dct:identifier xmlns:dct="http://purl.org/dc/terms/">0c456d2d-9548-4a2a-94ef-231d9d890ce2</dct:identifier>
       <dct:title xmlns:dct="http://purl.org/dc/terms/">Data of type chemistry in Le Gardon basin, from the Observatory of the former mining site of Carnoulès (TO Carnoules)</dct:title>
       <dct:abstract xmlns:dct="http://purl.org/dc/terms/">Data of type chemistry measured on Le Gardon basin within the framework of the Observatory of the former mining site of Carnoulès (TO Carnoules), part of the Pollution downstream of mining sites observatory (SO POLLUMINE) hosted by the Mediterranean Research Observatory of Environment (OSU OREME, http://www.oreme.org). Measurements start on 03-11-2004 and are regularly updated with new data.</dct:abstract>
       <dcat:keyword>biodiversity dynamics</dcat:keyword>

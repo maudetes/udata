@@ -161,16 +161,16 @@ def dataset_to_rdf(dataset, graph=None):
     '''
     # Use the unlocalized permalink to the dataset as URI when available
     # unless there is already an upstream URI
-    if dataset.harvest and dataset.harvest.uri:
-        id = URIRef(dataset.harvest.uri)
+    if dataset.harvest and dataset.harvest.remote_url:
+        id = URIRef(dataset.harvest.remote_url)
     elif dataset.id:
         id = URIRef(endpoint_for('datasets.show_redirect', 'api.dataset',
                     dataset=dataset.id, _external=True))
     else:
         id = BNode()
     # Expose upstream identifier if present
-    if dataset.harvest and dataset.harvest.dct_identifier:
-        identifier = dataset.harvest.dct_identifier
+    if dataset.harvest and dataset.harvest.remote_id:
+        identifier = dataset.harvest.remote_id
     else:
         identifier = dataset.id
     graph = graph or Graph(namespace_manager=namespace_manager)
@@ -331,7 +331,7 @@ def title_from_rdf(rdf, url):
             return i18n._('Nameless resource')
 
 
-def landing_page_from_rdf(rdf):
+def remote_url_from_rdf(rdf):
     landing_page = url_from_rdf(rdf, DCAT.landingPage)
     if landing_page:
         try:
@@ -339,6 +339,9 @@ def landing_page_from_rdf(rdf):
             return landing_page
         except uris.ValidationError:
             pass
+    if isinstance(rdf.identifier, URIRef):
+        return rdf.identifier.toPython()
+    return None
 
 
 def resource_from_rdf(graph_or_distrib, dataset=None):
@@ -443,20 +446,14 @@ def dataset_from_rdf(graph, dataset=None, node=None):
     dataset_license = rdf_value(d, DCT.license)
     dataset.license = License.guess(dataset_license, *licenses, default=default_license)
 
-    identifier = rdf_value(d, DCT.identifier)
-    uri = d.identifier.toPython() if isinstance(d.identifier, URIRef) else None
-    landing_page = landing_page_from_rdf(d)
+    remote_url = remote_url_from_rdf(d)
     created_at = rdf_value(d, DCT.issued)
     modified_at = rdf_value(d, DCT.modified)
 
     if not dataset.harvest:
         dataset.harvest = HarvestDatasetMetadata()
-    if identifier:
-        dataset.harvest.dct_identifier = identifier
-    if uri:
-        dataset.harvest.uri = uri
-    if landing_page:
-        dataset.harvest.remote_url = landing_page
+    if remote_url:
+        dataset.harvest.remote_url = remote_url
     if created_at:
         dataset.harvest.created_at = created_at
     if modified_at:

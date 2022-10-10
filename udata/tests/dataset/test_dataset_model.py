@@ -537,8 +537,6 @@ class HarvestMetadataTest:
             domain='domain.gouv.fr',
             last_update=datetime.now(),
             remote_url='http://domain.gouv.fr/dataset/remote_url',
-            uri='http://domain.gouv.fr/dataset/uri',
-            dct_identifier='http://domain.gouv.fr/dataset/identifier',
             archived_at=datetime.now(),
             archived='not-on-remote'
         )
@@ -566,7 +564,6 @@ class HarvestMetadataTest:
         harvest_metadata = HarvestResourceMetadata(
             created_at=datetime.now(),
             modified_at=datetime.now(),
-            uri='http://domain.gouv.fr/dataset/uri',
             dct_identifier='http://domain.gouv.fr/dataset/identifier'
         )
         resource.harvest = harvest_metadata

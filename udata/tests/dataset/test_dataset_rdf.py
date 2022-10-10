@@ -165,8 +165,8 @@ class DatasetToRdfTest:
 
     def test_from_external_repository(self):
         dataset = DatasetFactory(harvest=HarvestDatasetMetadata(
-            dct_identifier='an-identifier',
-            uri='https://somewhere.org/dataset'
+            remote_id='an-identifier',
+            remote_url='https://somewhere.org/dataset'
         ))
 
         d = dataset_to_rdf(dataset)
@@ -289,8 +289,8 @@ class RdfToDatasetTest:
         assert dataset.temporal_coverage.start == start
         assert dataset.temporal_coverage.end == end
 
-        assert dataset.harvest.dct_identifier == id
-        assert dataset.harvest.uri == uri
+        # assert dataset.harvest.remote_id == id
+        # assert dataset.harvest.remote_url == uri
 
     def test_html_description(self):
         node = BNode()

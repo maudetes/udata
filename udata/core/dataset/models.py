@@ -137,8 +137,6 @@ class HarvestDatasetMetadata(DynamicEmbeddedDocument):
     domain = db.StringField()
     last_update = db.DateTimeField()
     remote_url = db.URLField()
-    uri = db.StringField()
-    dct_identifier = db.StringField()
     archived_at = db.DateTimeField()
     archived = db.StringField()
 
@@ -147,7 +145,6 @@ class HarvestResourceMetadata(DynamicEmbeddedDocument):
     created_at = db.DateTimeField()
     modified_at = db.DateTimeField()
     dct_identifier = db.StringField()
-    uri = db.URLField()
 
 
 class License(db.Document):

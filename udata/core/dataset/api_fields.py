@@ -29,10 +29,6 @@ dataset_harvest_fields = api.model('HarvestDatasetMetadata', {
     'domain': fields.String(description='The harvested domain', allow_null=True),
     'last_update': fields.ISODateTime(description='The last harvest date', allow_null=True),
     'remote_url': fields.String(description='The dataset remote url', allow_null=True),
-    'uri': fields.String(description='The dataset harveted uri', allow_null=True),
-    'dct_identifier': fields.String(
-        description='The dct:identifier property from the harvest dataset',
-        allow_null=True),
     'archived_at': fields.ISODateTime(description='The archive date', allow_null=True),
     'archived': fields.String(
         description='The reason the dataset has been archived',
@@ -44,7 +40,6 @@ resource_harvest_fields = api.model('HarvestResourceMetadata', {
                                      allow_null=True),
     'modified_at': fields.ISODateTime(description='The resource harvest last modification date',
                                       allow_null=True),
-    'uri': fields.String(description='The resource harvest uri', allow_null=True),
     'dct_identifier': fields.String(
         description='The dct:identifier property from the harvest resource', allow_null=True)
 })
