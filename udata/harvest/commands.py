@@ -95,6 +95,19 @@ def launch(identifier):
 
 
 @grp.command()
+@click.option('-b', '--backend', default=None,
+              help='launch only sources with the targeted backend')
+def launch_all(backend):
+    '''Launch all sources harvesting on the workers'''
+    log.info('Launch all sources harvesting on the workers')
+    sources = actions.list_sources()
+    for source in sources:
+        if source.backend == backend.lower():
+            log.info('Launching harvest job for source "%s"', source.id)
+            actions.launch(source.id)
+
+
+@grp.command()
 @click.argument('identifier')
 def run(identifier):
     '''Run a harvester synchronously'''
