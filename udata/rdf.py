@@ -23,6 +23,7 @@ VCARD = Namespace('http://www.w3.org/2006/vcard/ns#')
 FREQ = Namespace('http://purl.org/cld/freq/')
 EUFREQ = Namespace('http://publications.europa.eu/resource/authority/frequency/')  # noqa: E501
 DCT = DCTERMS  # More common usage
+VCARD = Namespace('http://www.w3.org/2006/vcard/ns#')
 
 namespace_manager = NamespaceManager(Graph())
 namespace_manager.bind('dcat', DCAT)

@@ -17,7 +17,7 @@ from udata.frontend.markdown import parse_html
 from udata.core.dataset.models import HarvestDatasetMetadata, HarvestResourceMetadata
 from udata.models import db
 from udata.rdf import (
-    DCAT, DCT, FREQ, SCV, SKOS, SPDX, SCHEMA, EUFREQ,
+    DCAT, DCT, FREQ, SCV, SKOS, SPDX, SCHEMA, EUFREQ, VCARD,
     namespace_manager, url_from_rdf
 )
 from udata.utils import get_by, safe_unicode
@@ -314,6 +314,18 @@ def frequency_from_rdf(term):
         return freq
 
 
+def point_of_contact_from_rdf(rdf):
+    contact_point = rdf.value(DCAT.contactPoint)
+    if contact_point:
+        return {
+            'fullname': contact_point.value(VCARD.fn),
+            'email': contact_point.value(VCARD.hasEmail)
+            or contact_point.value(VCARD.email)
+            or contact_point.value(DCAT.email),
+            'type': rdf_value(contact_point, RDF.type)
+        }
+
+
 def title_from_rdf(rdf, url):
     '''
     Try to extract a distribution title from a property.
@@ -451,18 +463,13 @@ def dataset_from_rdf(graph, dataset=None, node=None):
     dataset_license = rdf_value(d, DCT.license)
     dataset.license = License.guess(dataset_license, *licenses, default=default_license)
 
-    identifier = rdf_value(d, DCT.identifier)
-    uri = d.identifier.toPython() if isinstance(d.identifier, URIRef) else None
-    remote_url = remote_url_from_rdf(d)
-    created_at = rdf_value(d, DCT.issued)
-    modified_at = rdf_value(d, DCT.modified)
-
     if not dataset.harvest:
         dataset.harvest = HarvestDatasetMetadata()
-    dataset.harvest.dct_identifier = identifier
-    dataset.harvest.uri = uri
-    dataset.harvest.remote_url = remote_url
-    dataset.harvest.created_at = created_at
-    dataset.harvest.modified_at = modified_at
+    dataset.harvest.dct_identifier = rdf_value(d, DCT.identifier)
+    dataset.harvest.uri = d.identifier.toPython() if isinstance(d.identifier, URIRef) else None
+    dataset.harvest.remote_url = remote_url_from_rdf(d)
+    dataset.harvest.created_at = rdf_value(d, DCT.issued)
+    dataset.harvest.modified_at = rdf_value(d, DCT.modified)
+    dataset.harvest.point_of_contact = point_of_contact_from_rdf(d)
 
     return dataset

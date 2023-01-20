@@ -258,6 +258,9 @@ class DcatBackendTest:
         assert dataset.temporal_coverage is not None
         assert dataset.temporal_coverage.start == date(2016, 1, 1)
         assert dataset.temporal_coverage.end == date(2016, 12, 5)
+        assert dataset.harvest.point_of_contact['email'] == 'hello@its.me'
+        assert dataset.harvest.point_of_contact['type'] == 'http://www.w3.org/2006/vcard/ns#Organization'
+        assert dataset.harvest.point_of_contact['fullname'] == 'Organization contact'
 
     def test_geonetwork_xml_catalog(self, rmock):
         url = mock_dcat(rmock, 'geonetwork.xml', path='catalog.xml')
