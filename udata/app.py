@@ -7,7 +7,8 @@ from os.path import abspath, dirname, exists, isfile, join
 
 import bson
 from flask import Blueprint as BaseBlueprint
-from flask import Flask, abort, g, json, make_response, send_from_directory
+from flask import Flask, abort, g, make_response, send_from_directory
+from flask.json.provider import JSONProvider
 from flask_caching import Cache
 from flask_wtf.csrf import CSRFProtect
 from speaklater import is_lazy_string
@@ -97,7 +98,7 @@ class Blueprint(BaseBlueprint):
         return wrapper
 
 
-class UDataJsonEncoder(json.JSONEncoder):
+class UDataJsonEncoder(JSONProvider):
     """
     A JSONEncoder subclass to encode unsupported types:
 

@@ -1,13 +1,12 @@
 import shlex
 from contextlib import contextmanager
-from urllib.parse import urlparse
+from urllib.parse import urlencode, urlparse
 
 import pytest
 from flask import current_app, json, template_rendered, url_for
 from flask.testing import FlaskClient
 from flask_principal import Identity, identity_changed
 from lxml import etree
-from werkzeug.urls import url_encode
 
 from udata import settings
 from udata.app import create_app
@@ -23,7 +22,7 @@ class TestClient(FlaskClient):
         if "qs" not in kwargs:
             return url
         qs = kwargs.pop("qs")
-        return "?".join([url, url_encode(qs)])
+        return "?".join([url, urlencode(qs)])
 
     def get(self, url, **kwargs):
         url = self._build_url(url, kwargs)

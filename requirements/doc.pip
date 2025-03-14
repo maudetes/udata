@@ -56,7 +56,7 @@ bleach[css]==6.2.0
     #   -c requirements/install.pip
     #   -c requirements/test.pip
     #   -r requirements/install.in
-blinker==1.4
+blinker==1.9.0
     # via
     #   -c requirements/install.pip
     #   -c requirements/test.pip
@@ -72,7 +72,6 @@ boto3==1.26.102
     #   -c requirements/install.pip
     #   -c requirements/test.pip
     #   -r requirements/install.in
-    #   flask-storage
 botocore==1.29.165
     # via
     #   -c requirements/install.pip
@@ -167,7 +166,7 @@ faker==37.0.0
     #   -c requirements/test.pip
     #   -r requirements/install.in
     #   factory-boy
-flask==2.1.2
+flask==2.2.5
     # via
     #   -c requirements/install.pip
     #   -c requirements/test.pip
@@ -184,7 +183,6 @@ flask==2.1.2
     #   flask-restx
     #   flask-security-too
     #   flask-sitemap
-    #   flask-storage
     #   flask-wtf
     #   sentry-sdk
 flask-babel==4.0.0
@@ -192,7 +190,7 @@ flask-babel==4.0.0
     #   -c requirements/install.pip
     #   -c requirements/test.pip
     #   -r requirements/install.in
-flask-caching==2.0.2
+flask-caching==2.3.1
     # via
     #   -c requirements/install.pip
     #   -c requirements/test.pip
@@ -207,13 +205,13 @@ flask-gravatar==0.5.0
     #   -c requirements/install.pip
     #   -c requirements/test.pip
     #   -r requirements/install.in
-flask-login==0.6.2
+flask-login==0.6.3
     # via
     #   -c requirements/install.pip
     #   -c requirements/test.pip
     #   -r requirements/install.in
     #   flask-security-too
-flask-mail==0.9.1
+flask-mail==0.10.0
     # via
     #   -c requirements/install.pip
     #   -c requirements/test.pip
@@ -223,7 +221,6 @@ flask-mongoengine==1.0.0
     #   -c requirements/install.pip
     #   -c requirements/test.pip
     #   -r requirements/install.in
-    #   flask-storage
 flask-navigation-temp-python-311==0.2.1
     # via
     #   -c requirements/install.pip
@@ -234,7 +231,7 @@ flask-principal==0.4.0
     #   -c requirements/install.pip
     #   -c requirements/test.pip
     #   flask-security-too
-flask-restx==1.0.5
+flask-restx==1.3.0
     # via
     #   -c requirements/install.pip
     #   -c requirements/test.pip
@@ -249,12 +246,7 @@ flask-sitemap==0.4.0
     #   -c requirements/install.pip
     #   -c requirements/test.pip
     #   -r requirements/install.in
-flask-storage==1.3.2
-    # via
-    #   -c requirements/install.pip
-    #   -c requirements/test.pip
-    #   -r requirements/install.in
-flask-wtf==1.0.1
+flask-wtf==1.2.2
     # via
     #   -c requirements/install.pip
     #   -c requirements/test.pip
@@ -285,19 +277,24 @@ idna==2.10
     #   email-validator
     #   requests
     #   urlextract
+importlib-resources==6.5.2
+    # via
+    #   -c requirements/install.pip
+    #   -c requirements/test.pip
+    #   flask-restx
 isodate==0.6.1
     # via
     #   -c requirements/install.pip
     #   -c requirements/test.pip
     #   rdflib
-itsdangerous==2.1.2
+itsdangerous==2.2.0
     # via
     #   -c requirements/install.pip
     #   -c requirements/test.pip
     #   flask
     #   flask-security-too
     #   flask-wtf
-jinja2==3.1.2
+jinja2==3.1.6
     # via
     #   -c requirements/install.pip
     #   -c requirements/test.pip
@@ -348,7 +345,6 @@ markupsafe==2.1.2
     # via
     #   -c requirements/install.pip
     #   -c requirements/test.pip
-    #   flask-storage
     #   jinja2
     #   mkdocs
     #   sentry-sdk
@@ -390,7 +386,6 @@ pillow==9.2.0
     # via
     #   -c requirements/install.pip
     #   -c requirements/test.pip
-    #   flask-storage
     #   pydenticon
 platformdirs==4.2.0
     # via mkdocs
@@ -572,7 +567,7 @@ webencodings==0.5.1
     #   -c requirements/test.pip
     #   bleach
     #   tinycss2
-werkzeug==2.2.2
+werkzeug==3.0.0
     # via
     #   -c requirements/install.pip
     #   -c requirements/test.pip
