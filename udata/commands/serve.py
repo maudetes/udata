@@ -3,7 +3,7 @@ import os
 
 import click
 from flask import current_app
-from flask.cli import DispatchingApp, pass_script_info
+from flask.cli import AppGroup, pass_script_info
 from werkzeug.serving import run_simple
 
 from udata.commands import cli
@@ -67,7 +67,7 @@ def serve(info, host, port, reload, debugger, eager_loading, with_threads):
     if eager_loading is None:
         eager_loading = not reload
 
-    app = DispatchingApp(info.load_app, use_eager_loading=eager_loading)
+    app = AppGroup(info.load_app)
 
     settings = os.environ.get("UDATA_SETTINGS", os.path.join(os.getcwd(), "udata.cfg"))
     extra_files = [settings]

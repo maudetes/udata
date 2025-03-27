@@ -1,7 +1,7 @@
 import logging
 
 import slugify
-from flask_mongoengine import Document
+from flask_mongoengine.documents import Document
 from mongoengine.fields import StringField
 from mongoengine.signals import post_delete, pre_save
 

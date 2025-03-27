@@ -1,4 +1,4 @@
-from urllib.parse import quote
+from urllib.parse import quote as url_quote
 from uuid import UUID
 
 from bson import ObjectId
@@ -81,7 +81,7 @@ class ModelConverter(BaseConverter):
         if self.has_slug:
             return self.model.slug.slugify(value)
         else:
-            return quote(value)
+            return url_quote(value)
 
     def to_python(self, value):
         try:

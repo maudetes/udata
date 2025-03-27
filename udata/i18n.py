@@ -15,7 +15,8 @@ from flask import (  # noqa
     request,
     url_for,
 )
-from flask.blueprints import BlueprintSetupState, _endpoint_from_view_func
+from flask.blueprints import BlueprintSetupState
+from flask.sansio.blueprints import _endpoint_from_view_func
 from flask_babel import Babel, format_date, format_datetime, refresh  # noqa
 from flask_babel import get_locale as get_current_locale  # noqa
 from werkzeug.local import LocalProxy
